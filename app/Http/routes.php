@@ -35,7 +35,3 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 });
-
-Route::group(['middleware' => ['web']], function () {
-	Route::resource('adminUsers/users', 'adminUsers\\UsersController');
-});
