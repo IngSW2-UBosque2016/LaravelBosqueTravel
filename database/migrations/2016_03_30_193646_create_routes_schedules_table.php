@@ -1,0 +1,47 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateRoutesSchedulesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        
+            Schema::create('routes_schedules', function(Blueprint $table) {
+                $table->increments('id_route_schedule');
+                $table->integer('id_road')->unsigned();
+					$table->foreign('id_road')->references('id_Road')->on('roads');
+                $table->integer('id_bus')->unsigned();
+		   $table->foreign('id_bus')->references('id_bus')->on('buses');
+                $table->integer('id_ticket')->unsigned();
+					$table->foreign('id_ticket')->references('id_ticket')->on('tickets');
+$table->string('destination');
+$table->string('source');
+$table->date('date');
+$table->string('status');
+$table->string('name');
+$table->date('starting_date');
+$table->date('ending_date');
+
+                $table->timestamps();
+            });
+            
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('routes_schedules');
+    }
+
+}

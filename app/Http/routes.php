@@ -20,8 +20,9 @@ Route::get('/qrcode', function()
 {
 $name = Input::get('name');
 $number = Input::get('phone_num');
-/*$code = base64_encode($name . $number);*/
-$code = "$name" . "$number";
+//$code = base64_encode($name . $number);
+//$code = "$name" . "$number";
+$code = bcrypt('hola');
 $qrCode = new QrCode();
 $qrCode->setText($code);
 $image = $qrCode->get();
@@ -32,7 +33,7 @@ $image = $qrCode->get();
  
   $response->header(
     'content-type',
-    'image/png'
+    'image/jpeg'
   );
  
   return $response;
@@ -44,6 +45,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::resource('API/drivers', 'DriverController');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -57,14 +60,22 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
-});
-
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+	Route::auth();
 
     Route::get('/home', 'HomeController@index');
+	Route::resource('adminUsers/users', 'adminUsers\\UsersController');
+	
+	
+		Route::resource('API/bus', 'API\\BusController');
+		Route::resource('API/stops', 'API\\StopsController');
+		Route::resource('API/reservation', 'API\\ReservationController');
+		Route::resource('API/sellers', 'API\\SellersController');
+		Route::resource('API/tickets', 'API\\TicketsController');
+		Route::resource('API/sellers', 'API\\SellersController');
+		Route::resource('API/sellers', 'API\\SellersController');
+	    Route::resource('API/route_schedule', 'API\\Route_ScheduleController');
+		Route::resource('API/route_schedule', 'API\\Route_ScheduleController');
+		Route::resource('API/route_schedule', 'API\\Route_ScheduleController');
+		Route::resource('API/road', 'API\\RoadController');
 });
 
-Route::group(['middleware' => ['web']], function () {
-	Route::resource('adminUsers/users', 'adminUsers\\UsersController');
-});
