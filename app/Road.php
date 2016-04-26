@@ -12,8 +12,19 @@ class Road extends Model
      *
      * @var string
      */
-    protected $table = 'roads';
 
+ 
+   public function stops(){
+        return $this->belongsToMany('App\Stop','roads_path_stops');
+    }
+	
+   public function path(){
+        return $this->belongsToMany('App\Path','roads_path_stops');
+    }
+ 
+  
+    protected $table = 'roads';
+protected $primaryKey = 'id_Road';
     /**
      * Attributes that should be mass-assignable.
      *

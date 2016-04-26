@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Ticket;
 use App\Seller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -40,6 +40,21 @@ class SellersController extends Controller
      *
      * @return Response
      */
+	 
+	 
+	  public function sellTicket(Request $request)
+    {
+       	$d = new Ticket;
+		$d->fill($request->all());
+		
+		$d->save();
+        Session::flash('flash_message', 'Ticket añadido!');
+
+        return redirect('API/tickets');
+    }
+	
+	
+	
     public function store(Request $request)
     {
         $this->validate($request, ['name_seller' => 'required', 'last_name_seller' => 'required', 'password' => 'required', ]);

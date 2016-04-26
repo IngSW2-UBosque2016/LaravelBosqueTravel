@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Bus;
 use App\Routes_Schedule;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -20,9 +21,16 @@ class Routes_ScheduleController extends Controller
      */
     public function index()
     {
-        $routes_schedule = Routes_Schedule::paginate(15);
+         $routes = Routes_Schedule::with('bus')->get();
+         foreach ($routes as $r) {
 
-        return view('API.routes_schedule.index', compact('routes_schedule'));
+            $capacidad = $r['bus']['capacity'];
+            $ocupacion = rand(0, $capacidad);
+            $availability = $ocupacion / $capacidad;
+
+             $r['availability'] = $availability;
+         }
+       return response()->json($routes);
     }
 
     /**
@@ -51,6 +59,22 @@ class Routes_ScheduleController extends Controller
         return redirect('API/routes_schedule');
     }
 
+	
+	    public function availability($idRoutes_schedules)
+    {
+      
+	   $idBus=Routes_Schedule::select('id_bus')->where('id_route_schedule','=',$idRoutes_schedules)->get();
+	   
+	   
+       $availabilityBus=Bus::select('capacity')->where('id_bus','=',$idBus)->get();
+	   
+	   $NumTickets =Routes_Schedule::select('id_tickets')->where('id_route_schedule','=',$idRoutes_schedules)->count();
+	   $availability=$NumTickets;
+	   // $availability=$availabilityBus-$NumTickets;
+	   
+	   return $availability;
+	   
+    }
     /**
      * Display the specified resource.
      *

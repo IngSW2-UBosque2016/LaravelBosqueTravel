@@ -23,4 +23,12 @@ protected $primaryKey = 'id_Stop';
      */
     protected $fillable = ['name_stop', 'location'];
 
+	
+	 public function Roads(){
+        return $this->belongsToMany('App\Road','roads_path_stops');
+    }
+	
+	   public function path(){
+        return $this->belongsToMany('App\Path','roads_path_stops');
+    }
 }

@@ -41,6 +41,7 @@ $image = $qrCode->get();
 });
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -63,6 +64,10 @@ Route::group(['middleware' => ['web']], function () {
 	Route::auth();
 
     Route::get('/home', 'HomeController@index');
+	
+	    Route::post('/sellTicket', 'API\\SellersController@sellTicket');
+		
+			    Route::resource('availability', 'API\\Routes_ScheduleController@availability');
 	Route::resource('adminUsers/users', 'adminUsers\\UsersController');
 	
 	
@@ -72,10 +77,9 @@ Route::group(['middleware' => ['web']], function () {
 		Route::resource('API/sellers', 'API\\SellersController');
 		Route::resource('API/tickets', 'API\\TicketsController');
 		Route::resource('API/sellers', 'API\\SellersController');
-		Route::resource('API/sellers', 'API\\SellersController');
-	    Route::resource('API/route_schedule', 'API\\Route_ScheduleController');
-		Route::resource('API/route_schedule', 'API\\Route_ScheduleController');
-		Route::resource('API/route_schedule', 'API\\Route_ScheduleController');
+		
+	   
+		Route::resource('API/route_schedule', 'API\\Routes_ScheduleController');
 		Route::resource('API/road', 'API\\RoadController');
 });
 

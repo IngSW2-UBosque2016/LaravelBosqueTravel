@@ -30,7 +30,7 @@ class BusController extends Controller
 		
 		  */
 		
-				return response()->json(Bus::all());
+				return response()->json(Bus::with('routesSchedules')->get());
     }
 
     /**

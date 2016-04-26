@@ -15,10 +15,11 @@ class CreateBusesTable extends Migration
         
             Schema::create('buses', function(Blueprint $table) {
                 $table->increments('id_bus');
-                $table->string('id_drivers');
+
 $table->string('capacity');
+$table->string('license_plate');
 $table->double('actual_latitude');
-$table->double('actual longitude');
+$table->double('actual_longitude');
 
                 $table->timestamps();
             });

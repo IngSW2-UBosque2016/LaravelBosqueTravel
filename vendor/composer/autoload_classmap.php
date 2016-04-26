@@ -6,12 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CreateBusesTable' => $baseDir . '/database/migrations/2016_03_29_162811_create_buses_table.php',
     'CreateDriversTable' => $baseDir . '/database/migrations/2016_03_10_131457_CreateDriversTable.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateReservationsTable' => $baseDir . '/database/migrations/2016_03_17_003308_create_reservations_table.php',
+    'CreatePathTable' => $baseDir . '/database/migrations/2016_04_26_155344_create_path_table.php',
+    'CreateRoadsPathStopsTable' => $baseDir . '/database/migrations/2016_05_26_155325_create_roads_path_stops_table.php',
+    'CreateRoadsTable' => $baseDir . '/database/migrations/2016_03_29_193952_create_roads_table.php',
+    'CreateRoutesSchedulesTable' => $baseDir . '/database/migrations/2016_03_30_193646_create_routes_schedules_table.php',
     'CreateSellersTable' => $baseDir . '/database/migrations/2016_03_17_003314_create_sellers_table.php',
     'CreateStopsTable' => $baseDir . '/database/migrations/2016_03_17_003248_create_stops_table.php',
-    'CreateTicketsTable' => $baseDir . '/database/migrations/2016_03_17_012435_create_tickets_table.php',
+    'CreateTicketsTable' => $baseDir . '/database/migrations/2016_03_30_012435_create_tickets_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -519,5 +523,12 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'seeder_buses' => $baseDir . '/database/seeds/seeder_buses.php',
+    'seeder_drivers' => $baseDir . '/database/seeds/seeder_drivers.php',
+    'seeder_path' => $baseDir . '/database/seeds/seeder_path.php',
+    'seeder_road' => $baseDir . '/database/seeds/seeder_road.php',
+    'seeder_roads_path_stops' => $baseDir . '/database/seeds/seeder_roads_path_stops.php',
+    'seeder_routes_schedules' => $baseDir . '/database/seeds/seeder_routes_schedules.php',
+    'seeder_seller' => $baseDir . '/database/seeds/seeder_seller.php',
     'seeder_stop' => $baseDir . '/database/seeds/seeder_stop.php',
 );

@@ -15,8 +15,10 @@ class CreateRoadsTable extends Migration
         
             Schema::create('roads', function(Blueprint $table) {
                 $table->increments('id_Road');
-                $table->string('name');
-$table->string('route');
+                $table->integer('id_Stop')->unsigned();
+				$table->foreign('id_Stop')->references('id_Stop')->on('stops');
+				$table->string('name');
+                $table->string('route');
 
                 $table->timestamps();
             });

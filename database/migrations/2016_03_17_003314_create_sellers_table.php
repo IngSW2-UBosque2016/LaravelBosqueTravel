@@ -16,9 +16,8 @@ class CreateSellersTable extends Migration
             Schema::create('sellers', function(Blueprint $table) {
                 $table->increments('id_Seller');
                 $table->string('name_seller');
-$table->string('last_name_seller');
-$table->text('password');
-
+                $table->string('last_name_seller');
+                $table->text('password');
                 $table->timestamps();
             });
             

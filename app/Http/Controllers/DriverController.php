@@ -29,6 +29,9 @@ class DriverController extends Controller
     public function create()
     {
         //
+		
+
+		
     }
 
     /**
@@ -40,6 +43,11 @@ class DriverController extends Controller
     public function store(Request $request)
     {
         //
+		
+		$d = new Driver;
+		$d->fill($request->all());
+		
+		$d->save();
     }
 
     /**
