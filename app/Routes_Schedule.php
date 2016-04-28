@@ -27,5 +27,10 @@ protected $primaryKey = 'id_route_schedule';
         return $this->belongsTo('App\Bus','id_bus');
      }   
 
+	     public function road()
+    {
+        return $this->belongsTo('App\Road','id_road');
+     }   
+
 
 }

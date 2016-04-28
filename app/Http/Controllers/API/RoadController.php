@@ -20,9 +20,7 @@ class RoadController extends Controller
      */
     public function index()
     {
-        $road = Road::paginate(15);
-
-        return view('API.road.index', compact('road'));
+       	return response()->json(Road::with('routesSchedules')->get());
     }
 
     /**

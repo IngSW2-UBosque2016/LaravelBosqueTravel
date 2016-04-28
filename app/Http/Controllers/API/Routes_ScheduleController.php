@@ -4,7 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\path;
+use App\Road;
 use App\Bus;
 use App\Routes_Schedule;
 use Illuminate\Http\Request;
@@ -21,7 +22,9 @@ class Routes_ScheduleController extends Controller
      */
     public function index()
     {
-         $routes = Routes_Schedule::with('bus')->get();
+     $routes = Routes_Schedule::with('bus','road')->get();
+		 
+		    
          foreach ($routes as $r) {
 
             $capacidad = $r['bus']['capacity'];
@@ -29,7 +32,13 @@ class Routes_ScheduleController extends Controller
             $availability = $ocupacion / $capacidad;
 
              $r['availability'] = $availability;
+			 
+
          }
+		 
+    
+		  
+		   
        return response()->json($routes);
     }
 

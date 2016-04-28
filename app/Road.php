@@ -13,23 +13,31 @@ class Road extends Model
      * @var string
      */
 
- 
+     protected $table = 'roads';
+protected $primaryKey = 'id_Road';
+
+
    public function stops(){
-        return $this->belongsToMany('App\Stop','roads_path_stops');
+        return $this->belongsToMany('App\Stop','road_path_stop')->withPivot('id_Stop');
     }
 	
    public function path(){
-        return $this->belongsToMany('App\Path','roads_path_stops');
+        return $this->belongsToMany('App\Path','road_path_stop')->withPivot('id_path'); 
     }
  
-  
-    protected $table = 'roads';
-protected $primaryKey = 'id_Road';
+  	 public function routesSchedules()
+    {
+        return $this->hasMany('App\Routes_Schedule','id_route_schedule');
+     }   
+
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
     protected $fillable = ['name', 'route'];
+	
+	
+
 
 }

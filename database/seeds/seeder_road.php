@@ -13,7 +13,7 @@ class seeder_road extends Seeder
     {
         DB::table('roads')->insert([
 
-            'id_stop' =>'1',
+         
             'name' =>'Chia', //maybe
 			'route' => 'novena 170',
            

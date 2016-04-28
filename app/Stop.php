@@ -25,10 +25,10 @@ protected $primaryKey = 'id_Stop';
 
 	
 	 public function Roads(){
-        return $this->belongsToMany('App\Road','roads_path_stops');
+        return $this->belongsToMany('App\Road','road_path_stop')->withPivot('id_Road');
     }
 	
 	   public function path(){
-        return $this->belongsToMany('App\Path','roads_path_stops');
+        return $this->belongsToMany('App\Path','road_path_stop')->withPivot('id_path');
     }
 }
