@@ -29,6 +29,8 @@ protected $primaryKey = 'id_route_schedule';
 
 	     public function road()
     {
+	
+	
         return $this->belongsTo('App\Road','id_road');
      }   
 

@@ -19,10 +19,12 @@ class Routes_ScheduleController extends Controller
      * Display a listing of the resource.
      *
      * @return Response
-     */
+      */
     public function index()
     {
-     $routes = Routes_Schedule::with('bus','road')->get();
+	 
+	   
+     $routes = Routes_Schedule::with('bus')->get();
 		 
 		    
          foreach ($routes as $r) {
@@ -32,13 +34,33 @@ class Routes_ScheduleController extends Controller
             $availability = $ocupacion / $capacidad;
 
              $r['availability'] = $availability;
-			 
+			
+			$id_road=$r['id_road']; 
+             $road = Road::find($id_road);
 
+	 foreach ($road->stops as $stop) {
+
+           $r['road'] = $road;
+
+         }   
+
+	 foreach ($road->path as $path) {
+
+           $r['road'] = $road;
+
+         }   			 
          }
-		 
-    
-		  
-		   
+		
+			
+			/** 
+      $road= Road::find(1);
+	 
+		 foreach ($road->stops as $stop) {
+
+           echo '<li>'.$stop->stop.'<li>'; 
+
+         }   
+		     */
        return response()->json($routes);
     }
 

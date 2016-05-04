@@ -15,12 +15,12 @@ class CreateRoadsPathStopsTable extends Migration
         Schema::create('road_path_stop', function (Blueprint $table) {
             $table->increments('id');
 			
-			$table->integer('id_path')->unsigned();
-				    $table->foreign('id_path')->references('id_path')->on('path');
-                $table->integer('id_Stop')->unsigned();
-				    $table->foreign('id_Stop')->references('id_Stop')->on('stops');
-                $table->integer('id_Road')->unsigned();
-		            $table->foreign('id_Road')->references('id_Road')->on('roads');
+			$table->integer('path_id')->unsigned();
+				    $table->foreign('path_id')->references('id_path')->on('path');
+                $table->integer('stop_id')->unsigned();
+				    $table->foreign('stop_id')->references('id_Stop')->on('stops');
+                $table->integer('road_id')->unsigned();
+		            $table->foreign('road_id')->references('id_Road')->on('roads');
             $table->timestamps();
         });
     }
