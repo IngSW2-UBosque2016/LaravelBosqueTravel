@@ -18,5 +18,12 @@ class seeder_seller extends Seeder
 			'password' => '123456',
             
         ]);
+        DB::table('sellers')->insert([
+    
+            'name_seller' =>'Erwin',
+            'last_name_seller' =>'Hernandez', 
+            'password' => '123456',
+            
+        ]);
     }
 }

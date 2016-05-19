@@ -1,5 +1,6 @@
 <?php
 use Endroid\QrCode\QrCode;
+use API\TicketsController;
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -18,11 +19,9 @@ Route::get('/qr', function()
 
 Route::get('/qrcode', function()
 {
-$name = Input::get('name');
-$number = Input::get('phone_num');
-//$code = base64_encode($name . $number);
-//$code = "$name" . "$number";
-$code = bcrypt('hola');
+
+
+$code =1;
 $qrCode = new QrCode();
 $qrCode->setText($code);
 $image = $qrCode->get();
@@ -45,6 +44,12 @@ $image = $qrCode->get();
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/c/{q}', function ($p) {
+    return Crypt::encrypt($p);
+});
+Route::get('/d/{q}', function ($p) {
+    return Crypt::decrypt($p);
+});
 
 
 Route::resource('API/drivers', 'DriverController');
@@ -59,8 +64,13 @@ Route::resource('API/drivers', 'DriverController');
 |
 */
 
+ Route::get('/GenerarQR/{p}', 'API\\TicketsController@ticketGeneration');
+
+ Route::get('/passanger/{p}/book/{b}', 'API\\ReservationController@Reservar');
+
 Route::group(['middleware' => ['web']], function () {
     //
+	
 	Route::auth();
 
     Route::get('/home', 'HomeController@index');

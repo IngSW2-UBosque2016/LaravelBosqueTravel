@@ -10,6 +10,8 @@ return array(
     'CreateDriversTable' => $baseDir . '/database/migrations/2016_03_10_131457_CreateDriversTable.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePathTable' => $baseDir . '/database/migrations/2016_04_26_155344_create_path_table.php',
+    'CreateRoadPaths' => $baseDir . '/database/migrations/2016_05_12_132201_create_road_paths.php',
+    'CreateRoadStops' => $baseDir . '/database/migrations/2016_05_12_132146_create_road_stops.php',
     'CreateRoadsPathStopsTable' => $baseDir . '/database/migrations/2016_05_26_155325_create_roads_path_stops_table.php',
     'CreateRoadsTable' => $baseDir . '/database/migrations/2016_03_29_193952_create_roads_table.php',
     'CreateRoutesSchedulesTable' => $baseDir . '/database/migrations/2016_03_30_193646_create_routes_schedules_table.php',
@@ -531,4 +533,6 @@ return array(
     'seeder_routes_schedules' => $baseDir . '/database/seeds/seeder_routes_schedules.php',
     'seeder_seller' => $baseDir . '/database/seeds/seeder_seller.php',
     'seeder_stop' => $baseDir . '/database/seeds/seeder_stop.php',
+    'seeder_tickets' => $baseDir . '/database/seeds/seeder_tickets.php',
+    'seeder_users' => $baseDir . '/database/seeds/seeder_users.php',
 );

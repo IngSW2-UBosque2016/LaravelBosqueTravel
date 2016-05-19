@@ -18,11 +18,11 @@ protected $primaryKey = 'id_Road';
 
 
    public function stops(){
-        return $this->belongsToMany('App\Stop','road_path_stop')->withPivot('stop_id');
+        return $this->belongsToMany('App\Stop','road_stops')->withPivot('stop_id');
     }
 	
    public function path(){
-        return $this->belongsToMany('App\Path','road_path_stop')->withPivot('path_id'); 
+        return $this->belongsToMany('App\Path','road_path')->withPivot('path_id'); 
     }
  
   	 public function routesSchedules()

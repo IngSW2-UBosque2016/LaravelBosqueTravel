@@ -36,6 +36,7 @@ class Routes_ScheduleController extends Controller
              $r['availability'] = $availability;
 			
 			$id_road=$r['id_road']; 
+
              $road = Road::find($id_road);
 
 	 foreach ($road->stops as $stop) {
@@ -79,6 +80,13 @@ class Routes_ScheduleController extends Controller
      *
      * @return Response
      */
+	 
+	  public function estadoRS($Rs)
+    {
+	
+	
+	
+	}
     public function store(Request $request)
     {
         $this->validate($request, ['id_road' => 'required', 'id_bus' => 'required', 'id_ticket' => 'required', 'destination' => 'required', 'source' => 'required', 'date' => 'required', 'status' => 'required', 'name' => 'required', 'starting_date' => 'required', 'ending_date' => 'required', ]);

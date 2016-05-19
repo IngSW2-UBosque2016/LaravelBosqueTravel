@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\User;
+use App\Ticket;
+use App\Routes_Schedule;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -30,6 +32,65 @@ class ReservationController extends Controller
      *
      * @return Response
      */
+
+
+public function Reservar($idUser,$idRS)
+    {
+ $user = User::with('ticket')->findOrFail($idUser);
+ 
+ $nTickets=$user->ticket->count();
+ 
+if($nTickets=!0){
+ $cont=0;
+ foreach ($user->ticket as $r) {
+         $use_date = $r['use_date'];
+         if($use_date<>'0000-00-00'){
+
+              $cont++;		 
+          
+			}
+			
+			
+			}
+			
+			if($cont<>0){
+			 $routes = Routes_Schedule::with('bus')->findOrFail($idRS);
+		 
+		    
+       
+			
+			   $capacidad = $routes['bus']['capacity'];
+           $ocupacion = rand(0, $capacidad);
+		  
+            $availability = $ocupacion / $capacidad;
+	
+			
+			
+			if($availability!=1){
+			
+			return 'si puede';
+			
+			}
+			}
+
+}
+
+
+//  $tickets = Ticket::with('user')->get();
+ 
+
+  $total_code=$idUser.$idRS;
+  
+  
+
+//return $total_code;
+//return response()->json($Tickets);
+
+return 'NO puede';
+}
+
+   
+
     public function create()
     {
         return view('API.reservation.create');

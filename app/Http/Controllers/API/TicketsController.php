@@ -1,10 +1,14 @@
 <?php
-
 namespace App\Http\Controllers\API;
+use Response;
+use Crypt;
+use Illuminate\Contracts\Routing\ResponseFactory;
+//use Illuminate\Http\Response;
 
+use Endroid\QrCode\QrCode;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\User;
 use App\Ticket;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -23,6 +27,77 @@ class TicketsController extends Controller
         $tickets = Ticket::paginate(15);
 
         return view('API.tickets.index', compact('tickets'));
+    }
+
+
+
+ public function ticketGeneration($id)
+    {
+
+   // $tickets = User::with('ticket')->find($id);
+   // $tickets = Ticket::with('user')->get();
+    $tickets = Ticket::with('user')->get();
+        foreach ($tickets as $r) {
+       $id_user = $r['id_user']; 
+             if($id_user ==$id){ 
+         $use_date = $r['updated_at'];
+         if($use_date ==false){ 
+            $id_ticket = $r['id_ticket']; 
+            $id_user = $r['id_user'];
+            $date = $r['created_at'].'';
+            $format =array(":","/"," ","-");
+            $dateWithFormat = str_replace($format, "_", $date);
+			$total_code=$id_ticket.$id_user.$dateWithFormat;
+			//return response()->json($total_code);
+
+           //return $total_code;}
+		
+		   
+//$code =$total_code;
+$code = Crypt::encrypt($total_code);
+$qrCode = new QrCode();
+$qrCode->setText($code);
+$image = $qrCode->get();
+  $response = Response::make(
+    $image,
+    200
+  );
+ 
+  $response->header(
+    'content-type',
+    'image/jpeg'
+  );
+ 
+  return $response;
+		   
+		   
+		}	  
+    }
+
+ }
+
+  /**
+$code = encrypt($total_code);
+  
+$qrCode = new QrCode();
+$qrCode->setText($code);
+$image = $qrCode->get();
+  $response = Response::make(
+    $image,
+    200
+  );
+ 
+  $response->header(
+    'content-type',
+    'image/jpeg'
+  );
+
+return Redirect::route('/qrcode', $code);
+        //&$ticket = Ticket::findOrFail($id);
+
+  */
+       		
+			  
     }
 
     /**
